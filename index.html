@@ -15,7 +15,7 @@
     .stage-wrapper { 
         flex: 1; 
         padding: 2rem 1.5rem; 
-        overflow-y: auto; /* 내용이 넘치면 세로 스크롤 허용 */
+        overflow-y: auto; 
         display: flex; 
         flex-direction: column; 
         align-items: center; 
@@ -25,9 +25,9 @@
     .slide-container {
         width: 100%;
         max-width: 1280px;
-        min-height: 720px; /* 16:9 비율의 최소 높이 보장 */
-        height: auto;      /* 내용이 많으면 자동으로 늘어남 */
-        margin: auto 0;    /* 화면이 클 경우 세로 중앙 정렬 */
+        min-height: 720px; 
+        height: auto;      
+        margin: auto 0;    
         background-color: #f8fafc;
         border-radius: 0.75rem;
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -48,7 +48,7 @@
     .slide.active { display: flex; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* 모바일/태블릿 등 작은 화면 반응형 패딩 조절 */
+    /* 모바일/태블릿 반응형 */
     @media (max-width: 768px) {
         .slide { padding: 1.5rem 1.5rem; }
         .slide-container { min-height: 100%; }
@@ -56,19 +56,32 @@
     }
 
     /* UI 요소 디자인 */
-    .quote-box { border-left: 4px solid #6200EA; background-color: #f5f3ff; padding: 1rem 1.25rem; margin-bottom: 1rem; border-radius: 0 0.5rem 0.5rem 0; }
-    .quote-text { font-size: 0.95rem; color: #4c1d95; font-style: italic; font-weight: 500; line-height: 1.5; }
-    .quote-source { display: block; text-align: right; font-size: 0.8rem; color: #6d28d9; margin-top: 0.5rem; }
-
     .badge { display: inline-flex; align-items: center; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem;}
     .badge-purple { background-color: #ede9fe; color: #6200EA; }
     .badge-pink { background-color: #fce7f3; color: #E91E63; }
     .badge-cyan { background-color: #e0f7fa; color: #00BCD4; }
+    .badge-yellow { background-color: #fef9c3; color: #a16207; }
 
     .material-card { background-color: #ffffff; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 1.5rem; border: 1px solid #e5e7eb; display: flex; flex-direction: column;}
     .footnote { font-size: 0.75rem; color: #6b7280; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; }
 
-    /* 차트 컨테이너 보장 */
+    /* 통계 데이터용 데이터 테이블 디자인 */
+    .data-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; font-size: 0.85rem; text-align: left; }
+    .data-table th { background-color: #f3f4f6; color: #374151; font-weight: 700; padding: 0.75rem 1rem; border-bottom: 2px solid #d1d5db; white-space: nowrap; }
+    .data-table td { padding: 0.75rem 1rem; border-bottom: 1px solid #e5e7eb; color: #4b5563; vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover { background-color: #f9fafb; }
+    .data-table .highlight { color: #6200EA; font-weight: bold; }
+    .data-table .highlight-pink { color: #E91E63; font-weight: bold; }
+
+    /* 리스트 스타일 커스텀 */
+    .bullet-list { list-style-type: none; padding-left: 0; }
+    .bullet-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; line-height: 1.6; color: #374151; }
+    .bullet-list li::before { content: '•'; position: absolute; left: 0; color: #6200EA; font-weight: bold; font-size: 1.2rem; }
+    .bullet-list.pink li::before { color: #E91E63; }
+    .bullet-list.cyan li::before { color: #00BCD4; }
+
+    /* 차트 컨테이너 */
     .chart-box { min-height: 300px; position: relative; width: 100%; flex: 1; }
 
     /* PDF 인쇄 최적화 */
@@ -95,7 +108,7 @@
         </div>
     </div>
     <div class="flex items-center gap-4">
-        <span id="slide-counter" class="text-sm font-bold text-gray-300 bg-gray-800 px-4 py-1.5 rounded-full border border-gray-600">1 / 10</span>
+        <span id="slide-counter" class="text-sm font-bold text-gray-300 bg-gray-800 px-4 py-1.5 rounded-full border border-gray-600">1 / 13</span>
         <button onclick="window.print()" class="bg-[#E91E63] hover:bg-[#D81B60] text-white px-4 py-2 rounded text-sm font-bold transition-colors shadow flex items-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
             PDF 저장
@@ -103,7 +116,7 @@
     </div>
 </header>
 
-<!-- 메인 스테이지 (스크롤 허용 영역) -->
+<!-- 메인 스테이지 -->
 <main class="stage-wrapper" id="stage">
     <div class="slide-container">
         
@@ -131,24 +144,25 @@
         <div class="slide" id="slide-2">
             <h2 class="text-3xl font-bold text-gray-900 mb-6">1. 연구의 배경 및 목적</h2>
             <div class="flex flex-col gap-6 flex-1">
-                <div class="material-card">
-                    <h3 class="text-lg font-bold text-[#6200EA] mb-3">거시적 환경 변화: 인공지능의 광범위한 파급력</h3>
-                    <div class="quote-box">
-                        <p class="quote-text">"인공지능 기술의 급격한 발달로 조직은 내외부적으로 많은 변화를 경험하고 있으며, 인공지능 기술은 과업의 특성, 일터의 상호 작용을 변화시키고 산업의 생존에 영향을 미칠 만큼 파급력이 넓고 크다."</p>
-                        <span class="quote-source">- Kaplan & Haenlein (2019); Tambe et al. (2019)</span>
-                    </div>
+                <div class="material-card border-l-4 border-l-[#6200EA]">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">거시적 환경 변화: 인공지능의 광범위한 파급력</h3>
+                    <ul class="bullet-list">
+                        <li><strong>AI 기술의 급격한 발달:</strong> 조직 내외부로 전례 없는 변화 촉발</li>
+                        <li><strong>과업 및 상호작용의 변화:</strong> 단순 업무 자동화를 넘어 일터 내 상호작용과 과업 특성 자체를 재정의</li>
+                        <li><strong>산업 생존 직결:</strong> 파급력이 매우 넓고 커서 조직의 생존에 직접적 영향을 미침 (Kaplan & Haenlein, 2019)</li>
+                    </ul>
                 </div>
-                <div class="material-card">
-                    <h3 class="text-lg font-bold text-[#E91E63] mb-3">조직행위론적 관점: 수용자 중심의 이해 필요성</h3>
-                    <div class="quote-box">
-                        <p class="quote-text">"성공적인 인공지능 기술 도입을 위해서 인공지능 기술 적용에 대해서 조직 구성원이 어떻게 느끼고, 인식하고, 반응하는지를 파악하는 것이 필요하다."</p>
-                        <span class="quote-source">- 김시내 & 박지영 (2024)</span>
-                    </div>
+                <div class="material-card border-l-4 border-l-[#E91E63]">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">조직행위론적 관점: 수용자 중심의 이해</h3>
+                    <ul class="bullet-list pink">
+                        <li><strong>기술 중심에서 인간 중심으로:</strong> 기술 자체의 우수성보다 도입 주체의 반응이 중요</li>
+                        <li><strong>구성원 태도 파악의 필수성:</strong> 조직 구성원이 AI를 어떻게 <span class="text-[#E91E63] font-bold">인식하고, 느끼고, 반응하는지</span>를 파악해야 성공적 도입 가능</li>
+                    </ul>
                 </div>
-                <div class="material-card bg-purple-50 border border-purple-200 mt-2">
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">연구 목적 (Research Objective)</h3>
-                    <p class="text-base text-gray-700 leading-relaxed">
-                        일터에서의 인공지능 기술 적용에 대한 한국 직장인의 다차원적 태도를 개념화하고, 이를 체계적으로 측정할 수 있는 <strong class="text-[#6200EA] bg-white px-2 py-0.5 rounded shadow-sm border">한국형 인공지능 기술 적용에 대한 직장인의 태도(K-AAAW)<sup>1)</sup> 척도</strong> 개발
+                <div class="material-card bg-purple-50 border border-purple-200 mt-auto">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">💡 연구 목적 (Research Objective)</h3>
+                    <p class="text-base text-gray-800 leading-relaxed font-medium">
+                        일터에서의 인공지능 기술 적용에 대한 한국 직장인의 다차원적 태도를 개념화하고, 이를 체계적으로 측정할 수 있는 <strong class="text-white bg-[#6200EA] px-2 py-0.5 rounded shadow-sm">한국형 인공지능 기술 적용에 대한 직장인의 태도(K-AAAW)<sup>1)</sup> 척도</strong> 개발
                     </p>
                 </div>
             </div>
@@ -163,123 +177,149 @@
                     <div class="material-card flex-1">
                         <span class="badge badge-pink">기존 이론의 한계</span>
                         <h3 class="text-lg font-bold text-gray-900 mb-3">TAM 모형의 정서적 요인 간과</h3>
-                        <div class="quote-box">
-                            <p class="quote-text">"TAM<sup>2)</sup>은 인공지능 기술에 대한 작업자들의 태도를 이해하는 하나의 이론이 될 수 있지만, 인지적 태도에 초점을 두고 있으며 정서적 요인을 간과했다는 한계를 지닌다."</p>
-                            <span class="quote-source">- 김시내 & 박지영 (2024)</span>
-                        </div>
+                        <ul class="bullet-list pink text-sm">
+                            <li><strong>TAM(기술수용모델)의 지배:</strong> 기존 정보시스템 분야는 유용성과 용이성 중심의 TAM에 의존</li>
+                            <li><strong>인지적 한계:</strong> 구성원의 '인지적 태도'에만 초점</li>
+                            <li><strong>정서적 간과:</strong> AI에 대한 두려움, 불안 등 핵심적인 <span class="bg-pink-100 px-1">정서적 요인을 간과</span>했다는 치명적 한계 지님</li>
+                        </ul>
                     </div>
                     <div class="material-card flex-1">
                         <span class="badge badge-purple">대안적 접근</span>
-                        <h3 class="text-lg font-bold text-gray-900 mb-3">태도의 다면성(Multidimensionality)</h3>
-                        <div class="quote-box">
-                            <p class="quote-text">"일터에서 인공지능 기술 적용에 대한 직장인의 태도는 다면적이며... 정서적, 인지적, 행동적 태도 등 다면적인 태도의 차원을 이해할 필요가 있다."</p>
-                            <span class="quote-source">- Park & Woo (2022)</span>
-                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">태도의 다면성 (Multidimensionality)</h3>
+                        <ul class="bullet-list text-sm">
+                            <li><strong>다면적 접근의 당위성:</strong> 직장인의 태도는 단일하지 않음</li>
+                            <li>심리학적 태도 구성 요소인 <strong>인지적, 정서적, 행동적 태도</strong>를 모두 아우르는 포괄적 척도 필요성 제기 (Park & Woo, 2022)</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="material-card bg-blue-50 border-l-4 border-[#00BCD4] justify-center shadow-md">
-                    <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">한국의 문화적 특수성 반영</h3>
-                    <div class="quote-box border-[#00BCD4] bg-white">
-                        <p class="quote-text">"상대적으로 권력거리가 높은 한국에서는 알고리듬에 의해 작동하고 적용되는 인공지능을 상대적으로 더 선호할 수 있을 것이다. 그리고 이러한 긍정적인 반응은 일터에서의 인공지능 기술 적용에 대한 태도에도 반영될 수 있다."</p>
-                        <span class="quote-source">- 김시내 & 박지영 (2024)</span>
-                    </div>
-                    <div class="bg-blue-100 p-4 rounded-lg mt-6 border border-blue-200">
-                        <strong class="text-blue-900 block mb-2 text-lg">핵심 시사점</strong>
-                        <p class="text-sm text-blue-800 leading-relaxed">서구 중심의 척도를 단순 번안하는 것을 넘어, 한국 조직 문화의 특수성(예: 높은 권력거리, 위계적 조직 특성 등)이 실질적으로 반영된 한국형 척도(K-AAAW) 개발의 강력한 당위성을 제공함.</p>
-                    </div>
+                    <span class="badge badge-cyan mb-2 self-start">문화적 특수성 (Korean Context)</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">왜 '한국형(Korean Version)' 인가?</h3>
+                    <ul class="bullet-list cyan text-base space-y-3">
+                        <li><strong>서구 중심 척도의 한계:</strong> 서양에서 개발된 척도의 단순 번안은 한국의 특수성을 담지 못함</li>
+                        <li><strong>높은 권력거리 문화:</strong> 한국처럼 위계와 권력거리가 높은 조직 문화에서는, 인간 상사보다 <strong>'알고리즘(AI)'에 의한 지시를 상대적으로 더 선호</strong>하거나 공정하게 느낄 수 있음</li>
+                        <li><strong>고유한 태도 반영:</strong> 이러한 한국 직장인만의 고유한 긍정적/부정적 맥락을 척도에 반영해야 함</li>
+                    </ul>
                 </div>
             </div>
-            <div class="footnote">2) TAM: Technology Acceptance Model (기술 수용 모델) - Davis(1989)가 제안한 정보기술 수용을 설명하는 대표적 이론.</div>
         </div>
 
         <!-- [슬라이드 4] 연구 프로세스 구조 (MECE) -->
         <div class="slide" id="slide-4">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">3. 연구 프로세스 구조 (MECE)</h2>
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">3. 연구 프로세스 개요 (MECE)</h2>
             <p class="text-base text-gray-600 mb-6">척도 개발의 엄격성을 확보하기 위해 <strong class="text-[#6200EA]">상호배타적이고 포괄적인(MECE) 3단계 연구</strong> 설계 및 수행</p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-                <div class="material-card text-center border-t-4 border-[#6200EA] shadow-lg">
-                    <div class="w-12 h-12 bg-purple-100 rounded-full mx-auto flex items-center justify-center text-[#6200EA] font-black text-xl mb-4">1</div>
+                <div class="material-card border-t-4 border-[#6200EA] shadow-lg">
+                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-[#6200EA] font-black text-lg mb-4">1</div>
                     <h3 class="font-bold text-lg mb-3 text-gray-800">문항 축소 및 차원 탐색</h3>
-                    <p class="text-sm text-[#6200EA] font-bold mb-4 bg-purple-50 py-2 rounded border border-purple-100">탐색적 요인분석(EFA)</p>
-                    <ul class="text-sm text-gray-600 text-left space-y-3 list-disc pl-5">
-                        <li>번역/역번역을 통한 67개 문항 풀 구성</li>
-                        <li>탐색적 요인분석을 통한 요인 적재량 검증 및 문항 축소</li>
-                        <li class="font-bold text-gray-900">6개의 다차원적 기저 구조 도출</li>
+                    <p class="text-xs text-white bg-[#6200EA] font-bold inline-block px-2 py-1 rounded mb-4">연구 1 (탐색적 접근)</p>
+                    <ul class="bullet-list text-sm">
+                        <li>67개 초기 문항 풀 구성 (번역/역번역)</li>
+                        <li>탐색적 요인분석(EFA) 수행</li>
+                        <li>문항 축소 및 6개 기저 차원 도출</li>
                     </ul>
                 </div>
                 
-                <div class="material-card text-center border-t-4 border-[#E91E63] shadow-lg">
-                    <div class="w-12 h-12 bg-pink-100 rounded-full mx-auto flex items-center justify-center text-[#E91E63] font-black text-xl mb-4">2</div>
+                <div class="material-card border-t-4 border-[#E91E63] shadow-lg">
+                    <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center text-[#E91E63] font-black text-lg mb-4">2</div>
                     <h3 class="font-bold text-lg mb-3 text-gray-800">문항 확정 및 외적 타당도</h3>
-                    <p class="text-sm text-[#E91E63] font-bold mb-4 bg-pink-50 py-2 rounded border border-pink-100">확인적 요인분석(CFA)</p>
-                    <ul class="text-sm text-gray-600 text-left space-y-3 list-disc pl-5">
-                        <li>신규 표본 대상 요인 구조 및 27문항 확정</li>
-                        <li>조직 변인 및 성격 요인과의 상관관계 분석</li>
-                        <li class="font-bold text-gray-900">차원 간 변별 타당도 통계적 증거 확보</li>
+                    <p class="text-xs text-white bg-[#E91E63] font-bold inline-block px-2 py-1 rounded mb-4">연구 2 (확인적/구조적 접근)</p>
+                    <ul class="bullet-list pink text-sm">
+                        <li>확인적 요인분석(CFA) 수행</li>
+                        <li>최종 27문항 확정</li>
+                        <li>성격/조직 변인과의 관계 통한 외적 타당도 검증</li>
                     </ul>
                 </div>
                 
-                <div class="material-card text-center border-t-4 border-[#00BCD4] shadow-lg">
-                    <div class="w-12 h-12 bg-cyan-100 rounded-full mx-auto flex items-center justify-center text-[#00BCD4] font-black text-xl mb-4">3</div>
+                <div class="material-card border-t-4 border-[#00BCD4] shadow-lg">
+                    <div class="w-10 h-10 bg-cyan-100 rounded-full flex items-center justify-center text-[#00BCD4] font-black text-lg mb-4">3</div>
                     <h3 class="font-bold text-lg mb-3 text-gray-800">수렴/변별 및 준거 타당도</h3>
-                    <p class="text-sm text-[#00BCD4] font-bold mb-4 bg-cyan-50 py-2 rounded border border-cyan-100">Predictive Validity</p>
-                    <ul class="text-sm text-gray-600 text-left space-y-3 list-disc pl-5">
-                        <li>기존 인공지능 척도(GAAIS) 비교 (수렴/변별)</li>
-                        <li>AI 채용 시나리오 기반 예측력 검증</li>
-                        <li class="font-bold text-gray-900">입사수용의도 및 조직매력도 예측 확인</li>
+                    <p class="text-xs text-white bg-[#00BCD4] font-bold inline-block px-2 py-1 rounded mb-4">연구 3 (예측적 접근)</p>
+                    <ul class="bullet-list cyan text-sm">
+                        <li>기존 인공지능 척도(GAAIS)와 비교</li>
+                        <li>수렴 및 변별 타당도 확보</li>
+                        <li>AI 채용 시나리오 기반 실질적 예측력(준거) 확인</li>
                     </ul>
                 </div>
-            </div>
-            <div class="mt-6 p-4 bg-gray-100 rounded border text-sm text-gray-700 italic text-center">
-                "총 세 개 연구를 진행한 결과, 여섯 가지 차원 하에 27개 문항으로 구성된 한국인의 일터에서 인공지능 기술 적용에 대한 태도를 측정하는 척도를 개발하였다."
             </div>
         </div>
 
-        <!-- [슬라이드 5] 방법론 (연구 1) -->
+        <!-- [슬라이드 5] 방법론 (연구 1 - 초기 문항 도출) -->
         <div class="slide" id="slide-5">
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">4. 방법론: 문항 개발 및 표본 특성 (연구 1)</h2>
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">4. 방법론: 문항 풀(Pool) 구성 및 표본 (연구 1)</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1">
-                <div class="material-card bg-gray-50 flex-col justify-center border-t-4 border-gray-300">
-                    <h3 class="text-xl font-bold text-gray-900 mb-4 border-b pb-2">문항 개발 방법론</h3>
-                    <div class="space-y-6 mt-2">
-                        <div class="bg-white p-4 rounded shadow-sm border border-gray-200">
-                            <span class="font-bold text-base text-[#6200EA] block mb-2 flex items-center gap-2">
-                                <span class="bg-[#6200EA] text-white w-6 h-6 flex items-center justify-center rounded-full text-xs">1</span> 
-                                번역 및 역번역 (Translation & Back-translation)
-                            </span>
-                            <p class="text-sm text-gray-700 leading-relaxed">
-                                "K-AAAW 문항 풀에 속하는 58개의 영어 문항은 <strong>Brislin(1970)</strong>의 번역 역번역 과정을 통해 번안하였다." (김시내 & 박지영, 2024). 언어적, 문화적 동등성을 철저히 확보.
-                            </p>
-                        </div>
-                        <div class="bg-white p-4 rounded shadow-sm border border-gray-200">
-                            <span class="font-bold text-base text-[#E91E63] block mb-2 flex items-center gap-2">
-                                <span class="bg-[#E91E63] text-white w-6 h-6 flex items-center justify-center rounded-full text-xs">2</span>
-                                문항 풀 확정
-                            </span>
-                            <p class="text-sm text-gray-700 leading-relaxed">
-                                기존 문항에 한국의 조직 문화적 특수성을 반영한 자체 문항을 추가하여, "최종적으로 K-AAAW 문항 개발을 위해서 <strong>총 67개 문항 풀</strong>을 구성하였다."
-                            </p>
-                        </div>
+                <div class="flex flex-col gap-4">
+                    <div class="material-card flex-1">
+                        <span class="badge badge-purple">1단계: 번역 및 역번역 절차</span>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3 mt-2">문화적 동등성 확보</h3>
+                        <ul class="bullet-list text-sm">
+                            <li>기존 영어 척도(AAAW) 58개 문항 활용</li>
+                            <li><strong>Brislin(1970)의 번역-역번역 모형</strong> 적용</li>
+                            <li>언어적 뉘앙스와 직장 맥락의 동등성 확보를 위한 전문가 교차 검증 실시</li>
+                        </ul>
+                    </div>
+                    <div class="material-card flex-1">
+                        <span class="badge badge-purple">2단계: 최종 문항 풀 구성</span>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3 mt-2">초기 67개 문항 도출</h3>
+                        <ul class="bullet-list text-sm">
+                            <li>번안된 문항 외에 한국의 조직 문화를 반영한 <strong>자체 개발 문항 추가</strong></li>
+                            <li>초기 타당성 분석을 위해 <strong>총 67개의 예비 문항(Pool)</strong>으로 연구 1 착수</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <div class="material-card flex flex-col border-t-4 border-[#00BCD4]">
+                <div class="material-card border-t-4 border-[#00BCD4]">
                     <h3 class="text-xl font-bold text-gray-900 mb-4 text-center">연구 1 표본 통계치 (N = 235)</h3>
                     <div class="chart-box">
                         <canvas id="demographicsChart"></canvas>
                     </div>
-                    <div class="mt-4 bg-cyan-50 p-3 rounded border border-cyan-100 text-sm text-center text-gray-700">
-                        "총 235명의 참가자의 자료가 본 연구에 사용되었다. 참가자들의 평균 나이는 35.19세(SD = 7.28)였으며, 성별 분포는 여성이 53.19%로 나타났다."
+                    <div class="mt-4 bg-cyan-50 p-3 rounded border border-cyan-100 text-sm text-center text-gray-700 font-medium">
+                        "참가자들의 평균 나이는 35.19세(SD = 7.28)였으며, 성별 분포는 여성이 53.19%로 나타났다."
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- [슬라이드 6] 결과 (연구 1) -->
+        <!-- [슬라이드 6] EFA 수치 및 27문항 선정 근거 (신규 추가) -->
         <div class="slide" id="slide-6">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">5. 결과: 다차원 요인 구조 도출 (연구 1)</h2>
-            <p class="text-base text-gray-600 mb-6">탐색적 요인분석(EFA)을 통해 요인 적재량이 낮거나 교차 적재되는 문항을 축소하여 <strong>6개 핵심 차원</strong> 도출</p>
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">5. 문항 축소 및 탐색적 요인분석 (연구 1 결과)</h2>
+            <div class="flex flex-col gap-6 flex-1">
+                <div class="material-card border-l-4 border-l-[#E91E63]">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">초기 67개 문항에서 27개로 축소된 통계적 근거</h3>
+                    <p class="text-sm text-gray-700 mb-4">연구 1의 데이터(N=235)를 바탕으로 <strong>탐색적 요인분석(EFA)</strong>을 실시하여 척도의 신뢰도와 타당도를 저해하는 문항들을 단계적으로 제거했습니다.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                            <h4 class="font-bold text-[#E91E63] mb-3 text-base">📊 분석 방법</h4>
+                            <ul class="bullet-list pink text-sm space-y-2">
+                                <li><strong>추출 방법:</strong> 주축분해법 (Principal Axis Factoring) 적용 - 공통 분산만을 추출하여 기저 구조 파악</li>
+                                <li><strong>회전 방식:</strong> 사각회전 (Promax) - 인문/사회과학에서 요인 간의 상관성을 가정하는 가장 적합한 방식</li>
+                                <li><strong>고유값(Eigenvalue):</strong> 1.0 이상 기준 적용하여 요인 수 결정</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded border border-gray-200">
+                            <h4 class="font-bold text-[#6200EA] mb-3 text-base">✂️ 문항 제거(축소) 기준</h4>
+                            <ul class="bullet-list text-sm space-y-2">
+                                <li><strong>요인 부하량(Factor Loading) 미달:</strong> 해당 요인에 대한 적재량이 <strong>.40 또는 .50 미만</strong>으로 구조적 기여도가 낮은 문항 제거</li>
+                                <li><strong>교차 부하량(Cross-loading) 발생:</strong> 두 개 이상의 요인에 걸쳐 높게 적재(.30 이상 차이가 나지 않는 경우)되어 변별력이 떨어지는 애매한 문항 제거</li>
+                                <li><strong>개념적 불일치:</strong> 통계적으로 묶였으나 해당 차원의 이론적 정의와 벗어나는 문항 제거</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="material-card bg-purple-50 flex flex-col justify-center items-center text-center py-6 mt-auto">
+                    <span class="text-2xl font-black text-[#6200EA] mb-2">67 문항 ➔ 최종 27 문항</span>
+                    <p class="text-sm text-gray-700">위의 엄격한 통계적/개념적 기준을 통과한 27개 문항만이 남아 <strong>6개의 뚜렷한 요인 구조(차원)</strong>를 형성함</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- [슬라이드 7] 6개 핵심 차원 도출 (연구 1) -->
+        <div class="slide" id="slide-7">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">6. 최종 도출된 다차원 요인 구조 (6대 차원)</h2>
+            <p class="text-base text-gray-600 mb-6">EFA를 통해 도출된 27개 문항은 인지, 정서, 행동 요소를 모두 포괄하는 <strong>6개의 다차원적 기저 구조</strong>를 이룹니다.</p>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 flex-1">
                 <div class="material-card justify-center items-center h-[350px] lg:h-auto">
@@ -288,145 +328,245 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 content-center">
-                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <strong class="text-base text-[#6200EA] flex items-center gap-2">🤖 지각된 의인화</strong> 
+                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm">
+                        <strong class="text-base text-[#6200EA] flex items-center gap-2">🤖 1. 지각된 의인화</strong> 
                         <span class="text-xs text-gray-600 mt-2 block leading-snug">AI를 인간과 유사하게 지각하는 인지적 태도 및 믿음</span>
                     </div>
-                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <strong class="text-base text-[#6200EA] flex items-center gap-2">🔄 지각된 적응성</strong> 
+                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm">
+                        <strong class="text-base text-[#6200EA] flex items-center gap-2">🔄 2. 지각된 적응성</strong> 
                         <span class="text-xs text-gray-600 mt-2 block leading-snug">AI 도입에 따른 조직 환경과 개인의 적응 가능성 지각</span>
                     </div>
-                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <strong class="text-base text-[#6200EA] flex items-center gap-2">⭐ 지각된 질</strong> 
-                        <span class="text-xs text-gray-600 mt-2 block leading-snug">AI가 도출한 업무 결과물과 의사결정의 품질에 대한 인식</span>
+                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm">
+                        <strong class="text-base text-[#6200EA] flex items-center gap-2">⭐ 3. 지각된 질</strong> 
+                        <span class="text-xs text-gray-600 mt-2 block leading-snug">AI가 도출한 업무 결과물과 의사결정의 품질 인식</span>
                     </div>
                     <div class="p-4 bg-[#fce7f3] border border-[#fbcfe8] rounded-lg shadow-sm relative overflow-hidden">
                         <div class="absolute left-0 top-0 w-1.5 h-full bg-[#E91E63]"></div>
-                        <strong class="text-base text-[#E91E63] flex items-center gap-2">😰 기술 사용의 불안 (정서)</strong> 
-                        <span class="text-xs text-[#9d174d] mt-2 block leading-snug font-medium">TAM이 간과했던 핵심. AI 사용 시 느끼는 두려움</span>
+                        <strong class="text-base text-[#E91E63] flex items-center gap-2">😰 4. 기술 사용의 불안</strong> 
+                        <span class="text-xs text-[#9d174d] mt-2 block leading-snug font-bold">TAM이 간과한 '정서'. AI 사용 시 느끼는 두려움</span>
                     </div>
                     <div class="p-4 bg-[#fce7f3] border border-[#fbcfe8] rounded-lg shadow-sm relative overflow-hidden">
                         <div class="absolute left-0 top-0 w-1.5 h-full bg-[#E91E63]"></div>
-                        <strong class="text-base text-[#E91E63] flex items-center gap-2">⚠️ 직무 불안정성 (정서)</strong> 
-                        <span class="text-xs text-[#9d174d] mt-2 block leading-snug font-medium">업무나 일자리가 AI로 대체될 것이라는 위협 지각</span>
+                        <strong class="text-base text-[#E91E63] flex items-center gap-2">⚠️ 5. 직무 불안정성</strong> 
+                        <span class="text-xs text-[#9d174d] mt-2 block leading-snug font-bold">자신의 업무가 AI로 대체될 것이라는 위협 지각 (정서)</span>
                     </div>
-                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                        <strong class="text-base text-[#00BCD4] flex items-center gap-2">💡 개인적 유용성</strong> 
-                        <span class="text-xs text-gray-600 mt-2 block leading-snug">AI가 자신의 업무 효율과 실질적 성과를 높여줄 것이라는 인식</span>
+                    <div class="p-4 bg-gray-50 border border-gray-200 rounded-lg shadow-sm">
+                        <strong class="text-base text-[#00BCD4] flex items-center gap-2">💡 6. 개인적 유용성</strong> 
+                        <span class="text-xs text-gray-600 mt-2 block leading-snug">AI가 실질적 업무 효율과 성과를 높여줄 것이라는 인식</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- [슬라이드 7] 방법론 (연구 2) -->
-        <div class="slide" id="slide-7">
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">6. 방법론: 외적 및 구조적 타당도 검증 (연구 2)</h2>
+        <!-- [슬라이드 8] 방법론 (연구 2 - CFA 및 외적 타당도) -->
+        <div class="slide" id="slide-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">7. 구조적/외적 타당도 검증 개요 (연구 2)</h2>
             <div class="flex flex-col gap-6 flex-1">
                 <div class="material-card">
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 border-b-2 border-[#6200EA] inline-block pb-1">연구 2의 목적 및 방법</h3>
-                    <div class="bg-gray-50 p-4 rounded-lg border text-base text-gray-700 leading-relaxed mt-2">
-                        "연구 2에서는 문항을 최종적으로 결정하고(최종 27문항 확정), K-AAAW의 각 차원과 다른 변인과의 관계를 통해 <strong>외적 타당도를 확인</strong>하고자 하였다." (김시내 & 박지영, 2024). <br><br>
-                        <span class="text-sm text-gray-600 font-medium bg-yellow-50 p-2 rounded block border border-yellow-200">
-                            📌 새로운 표본을 대상으로 <strong>확인적 요인분석(CFA)</strong>을 실시하여 6요인 모형의 구조적 적합도를 성공적으로 재검증함.
-                        </span>
-                    </div>
+                    <span class="badge badge-purple">확인적 요인분석 (CFA)</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 mt-1">새로운 표본 대상 구조 재검증</h3>
+                    <ul class="bullet-list text-base space-y-2">
+                        <li>연구 1과 <strong>다른 독립적인 직장인 표본</strong>을 수집하여 검증 수행</li>
+                        <li>탐색적으로 도출된 6요인, 27문항 구조가 타당한지 <strong>확인적 요인분석(CFA)</strong> 실시</li>
+                        <li>문항들이 각 요인에 안정적으로 적재되는지 통계적 적합도 확인</li>
+                    </ul>
                 </div>
                 
-                <div class="material-card flex-1 bg-[#faf5ff] border-[#e9d5ff]">
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 border-b-2 border-[#E91E63] inline-block pb-1">통계적 타당화 절차 (Nomological Network)</h3>
-                    <p class="text-sm text-gray-700 mb-4 mt-1">
-                        "성격 변인과 외부적 요인인 조직의 특성과 K-AAAW의 관계를 통해 <strong>K-AAAW의 각 차원의 변별 타당도 증거를 확보</strong>하고자 하였다."
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
-                        <div class="bg-white p-5 rounded-lg shadow border-t-4 border-[#E91E63]">
-                            <h4 class="font-bold text-base mb-2 text-gray-800">성격 변인과의 관계 분석</h4>
-                            <p class="text-sm text-gray-600 leading-relaxed">개인의 빅파이브 성격(개방성, 성실성 등)이나 기술 준비도(Technology Readiness) 등과 K-AAAW 6개 차원 간의 차별적인 상관관계를 통계적으로 분석하여 내적 일관성을 점검함.</p>
+                <div class="material-card bg-[#faf5ff] border-[#e9d5ff] flex-1">
+                    <span class="badge badge-pink">외적 타당도 (Nomological Network)</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 mt-1">성격 및 조직 변인과의 관계 분석</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2 h-full">
+                        <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-[#E91E63]">
+                            <h4 class="font-bold text-base mb-3 text-gray-800">1. 성격 변인과의 관계</h4>
+                            <ul class="bullet-list pink text-sm">
+                                <li>빅파이브(Big 5) 성격(예: 개방성, 성실성 등)</li>
+                                <li>개인의 <strong>기술 준비도(Technology Readiness)</strong> 측정</li>
+                                <li>K-AAAW 6개 차원과 차별적으로 상관을 가지는지 확인하여 변별력 입증</li>
+                            </ul>
                         </div>
-                        <div class="bg-white p-5 rounded-lg shadow border-t-4 border-[#00BCD4]">
-                            <h4 class="font-bold text-base mb-2 text-gray-800">조직 변인과의 관계 분석</h4>
-                            <p class="text-sm text-gray-600 leading-relaxed">조직의 혁신 지원 풍토나 조직 수준의 변화 준비도 등 외부 맥락 변수가 직장인의 AI 태도 형성에 미치는 차별적 영향을 분석하여 강력한 외적 타당성을 구축함.</p>
+                        <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-[#00BCD4]">
+                            <h4 class="font-bold text-base mb-3 text-gray-800">2. 조직 변인과의 관계</h4>
+                            <ul class="bullet-list cyan text-sm">
+                                <li>조직의 <strong>혁신 지원 풍토</strong></li>
+                                <li>조직 수준의 <strong>변화 준비도</strong></li>
+                                <li>외부 맥락 변수가 직장인의 AI 태도 형성에 미치는 차별적 영향 확인</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- [슬라이드 8] 방법론 (연구 3) -->
-        <div class="slide" id="slide-8">
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">7. 방법론: 준거 및 변별 타당도 (연구 3)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1">
-                <div class="material-card">
-                    <span class="badge badge-purple mb-2">수렴 및 변별 타당도</span>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">기존 척도와의 통계적 비교</h3>
-                    <p class="text-base text-gray-700 leading-relaxed mb-6">
-                        "연구 3에서는 K-AAAW와 인공지능 기술에 대한 <strong>기존 척도(GAAIS<sup>3)</sup>) 및 일반적인 직무 불안정성</strong>과의 관계를 통해 변별 및 수렴 타당도를 확인하고자 한다."
-                    </p>
-                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 mt-auto">
-                        <ul class="text-sm text-gray-700 space-y-3">
-                            <li class="flex items-start gap-2"><span class="text-[#6200EA] font-bold">✓ 수렴 타당도:</span> 기존 AI 일반 태도 척도(GAAIS)와 유의미한 정적/부적 상관 통계치 도출</li>
-                            <li class="flex items-start gap-2"><span class="text-[#6200EA] font-bold">✓ 변별 타당도:</span> 기존 척도로는 설명할 수 없는 '직장'이라는 특수 맥락에서의 고유한 분산을 설명함 입증</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="material-card border-2 border-[#00BCD4] shadow-lg">
-                    <span class="badge badge-cyan mb-2">준거 타당도 (Predictive Validity)</span>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">AI 채용 시나리오 기반 예측력</h3>
-                    <p class="text-base text-gray-700 leading-relaxed mb-6">
-                        "인공지능 기술을 활용한 <strong>채용 과정을 통해 K-AAAW가 채용 결과물인 입사수용의도와 조직 매력도를 예측하는지</strong> 확인하고자 하였다."
-                    </p>
-                    <div class="bg-[#e0f7fa] p-4 rounded-lg border border-[#b2ebf2] mt-auto">
-                        <ul class="text-sm text-gray-800 space-y-3 list-disc list-inside font-medium">
-                            <li>AI 면접 및 평가 시스템을 도입한 가상의 채용 시나리오 제시</li>
-                            <li>회귀분석 결과, K-AAAW의 긍정 차원 점수가 높은 집단이 <strong>해당 조직의 매력도를 유의미하게 높게 평가</strong>함</li>
-                            <li class="text-blue-700">→ 실제 조직 행동 의도(입사)를 예측하는 실용적 가치 증명</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footnote">3) GAAIS: General Attitudes towards Artificial Intelligence Scale. 범용적인 인공지능 기술 태도 척도 (Schepman & Rodway, 2020)</div>
-        </div>
-
-        <!-- [슬라이드 9] 시사점 및 비판적 고찰 -->
+        <!-- [슬라이드 9] CFA 표 (기존 슬라이드 7에서 분리) -->
         <div class="slide" id="slide-9">
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">8. 결론, 시사점 및 비판적 고찰</h2>
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">8. 구조적 타당도 통계치 확인 (연구 2 결과)</h2>
+            <div class="flex flex-col gap-6 flex-1 justify-center">
+                <div class="material-card border-l-4 border-l-[#6200EA] shadow-lg">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">[표 1] K-AAAW 6요인 27문항 모형의 CFA 적합도 검증</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th class="w-1/4">검증 지수 (Index)</th>
+                                <th class="w-1/4">도출된 통계치 (Value)</th>
+                                <th class="w-1/4">적합도 판단 기준</th>
+                                <th class="w-1/4">분석 결과</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>$\chi^2$ (카이제곱)</td>
+                                <td><span class="highlight text-lg">509.28</span></td>
+                                <td>표본 크기에 민감하여 다른 지수 병행 확인 필요</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>CFI (비교적합지수)</td>
+                                <td><span class="highlight text-lg">.935</span></td>
+                                <td>.90 이상이면 우수 모형</td>
+                                <td><span class="highlight">적합 (우수)</span></td>
+                            </tr>
+                            <tr>
+                                <td>TLI (터커-루이스 지수)</td>
+                                <td><span class="highlight text-lg">.926</span></td>
+                                <td>.90 이상이면 우수 모형</td>
+                                <td><span class="highlight">적합 (우수)</span></td>
+                            </tr>
+                            <tr>
+                                <td>RMSEA (근사오차평균제곱근)</td>
+                                <td><span class="highlight text-lg">.046</span></td>
+                                <td>.05 이하이면 우수, .08 이하 수용</td>
+                                <td><span class="highlight">적합 (우수)</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="bg-gray-100 border border-gray-300 p-4 rounded-lg mt-6 text-sm text-gray-800">
+                        <strong class="text-[#6200EA] text-base block mb-2">📌 수렴 타당도 요인부하량 확인</strong>
+                        각 문항이 할당된 요인에 통계적으로 잘 묶이는지를 나타내는 <strong>표준화된 요인부하량(Factor Loadings)은 .532에서 .866의 범위</strong>로 나타났습니다. 모든 문항이 기준치(.50)를 상회하여, 27개 문항이 각각의 6개 차원에 매우 안정적으로 수렴함을 입증했습니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- [슬라이드 10] 방법론 (연구 3 - 수렴/변별) -->
+        <div class="slide" id="slide-10">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">9. 수렴 및 변별 타당도 검증 (연구 3)</h2>
+            <div class="flex flex-col gap-6 flex-1">
+                <div class="material-card border-l-4 border-l-[#00BCD4] flex-1">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">[표 2] K-AAAW 기존 척도 및 관련 개념과의 비교</h3>
+                    <p class="text-sm text-gray-700 mb-4">
+                        연구 3에서는 K-AAAW가 기존 AI 기술 척도들과 어떻게 다르고 유사한지를 분석하여 척도의 고유성을 증명했습니다.
+                    </p>
+                    <table class="data-table mt-2">
+                        <thead>
+                            <tr>
+                                <th class="w-1/4">검증 항목</th>
+                                <th class="w-1/4">비교 대상 척도</th>
+                                <th class="w-2/4">분석 결과 (통계적 확인 사항)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge badge-purple mb-0">수렴 및 변별 타당도</span></td>
+                                <td class="font-bold text-gray-800">GAAIS<br><span class="text-xs font-normal text-gray-500">(범용 인공지능 태도 척도)</span></td>
+                                <td>
+                                    <ul class="bullet-list text-xs mb-0">
+                                        <li>유의미한 정적/부적 상관을 가짐 (수렴성 확인)</li>
+                                        <li>동시에 <strong>직장이라는 특수 맥락</strong>에서 범용 척도(GAAIS)가 설명하지 못하는 고유한 분산을 설명함 입증 (변별성 확인)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-pink mb-0">변별 타당도</span></td>
+                                <td class="font-bold text-gray-800">일반적 직무 불안정성 척도</td>
+                                <td>
+                                    <ul class="bullet-list pink text-xs mb-0">
+                                        <li>K-AAAW의 '직무 불안정성(AI로 인한)'은 일반적 회사 사정에 의한 직무 불안정성과 상관관계가 있음</li>
+                                        <li>그러나 <strong>"어느 정도 수렴되나 완전히 구별되는 독립적 요인"</strong>임이 통계적으로 명확히 확인됨</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- [슬라이드 11] 신규 추가: AI 채용 시나리오 상세 -->
+        <div class="slide" id="slide-11">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">10. 준거 예측 타당도: AI 채용 시나리오 검증</h2>
+            <div class="flex flex-col gap-6 flex-1">
+                <div class="material-card border-2 border-[#E91E63] bg-[#fff1f2] shadow-md">
+                    <span class="badge badge-pink mb-2 self-start">예측적 접근 (Predictive Validity)</span>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">단순한 태도 조사를 넘어 '실제 행동 의도'를 예측하는가?</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">
+                        K-AAAW 척도가 높고 낮은 것이, 실제 직장인들의 향후 행동(입사 지원 등)에 어떤 영향을 미치는지 <strong>실험적 시나리오 기법</strong>을 통해 검증했습니다.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+                    <div class="bg-white p-5 rounded-lg border border-gray-300 shadow">
+                        <h4 class="font-bold text-lg text-[#6200EA] mb-4 flex items-center gap-2">🎬 시나리오 실험 설계</h4>
+                        <ul class="bullet-list text-sm space-y-3">
+                            <li><strong>상황 부여:</strong> 참가자들에게 <strong>"귀하가 이직을 위해 지원한 A기업"</strong>이라는 가상의 상황 제시</li>
+                            <li><strong>실험 조작 (AI 개입):</strong> 해당 A기업의 서류전형과 면접 평가를 <strong>'인공지능(AI) 시스템이 단독으로/또는 보조하여' 진행</strong>한다고 조건 제시</li>
+                            <li><strong>종속 변수 측정:</strong> 이 시나리오를 읽은 후, A기업에 대한 <strong>'조직 매력도'</strong>(얼마나 매력적인가?)와 <strong>'입사수용의도'</strong>(합격하면 갈 것인가?)를 측정</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-lg border border-[#E91E63] shadow relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-16 h-16 bg-pink-100 rounded-bl-full flex justify-center items-center font-bold text-2xl text-[#E91E63] pl-2 pb-2">!</div>
+                        <h4 class="font-bold text-lg text-[#E91E63] mb-4">🏆 예측 결과 (회귀 분석)</h4>
+                        <ul class="bullet-list pink text-sm space-y-3 relative z-10">
+                            <li>분석 결과, 지원자의 <strong>K-AAAW 점수(특히 '지각된 질' 차원)가 높을수록</strong></li>
+                            <li>AI 면접을 도입한 회사에 대해 <strong>조직 매력도를 유의미하게 더 높게 평가</strong>함</li>
+                            <li>결과적으로 해당 기업에 대한 <strong>입사 의도도 함께 증가</strong>함</li>
+                        </ul>
+                        <div class="mt-4 p-3 bg-pink-50 rounded border border-pink-200 text-xs text-[#be185d] font-bold text-center">
+                            결론: K-AAAW는 HR 정책(AI 면접 도입)에 대한 구성원의 실질적 반응과 행동을 정확히 예측해내는 강력한 실용적 도구임
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- [슬라이드 12] 시사점 및 비판적 고찰 -->
+        <div class="slide" id="slide-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">11. 결론, 시사점 및 한계점</h2>
             <div class="flex flex-col gap-6 flex-1">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
                     <div class="material-card bg-[#f5f3ff] border-[#ddd6fe] shadow">
-                        <h3 class="text-lg font-bold text-[#6200EA] mb-3 flex items-center gap-2"><span class="text-2xl">📖</span> 학술적 시사점</h3>
-                        <p class="text-sm text-gray-700 leading-relaxed mb-4 bg-white p-3 rounded border">
-                            "국내 직장인을 대상으로 타당화된 K-AAAW 척도는 <strong>직무 태도 및 행동에 미치는 영향을 연구하는 기반</strong>이 될 수 있을 것이다."
-                        </p>
-                        <ul class="mt-auto text-sm text-gray-600 list-disc list-inside space-y-2 pl-2">
-                            <li>TAM의 인지적 한계 극복 (정서적/행동적 요인 포괄)</li>
-                            <li>조직심리학 및 OB 분야의 실증 연구 확장 도구 제공</li>
+                        <h3 class="text-lg font-bold text-[#6200EA] mb-4 flex items-center gap-2"><span class="text-2xl">📖</span> 학술적 시사점</h3>
+                        <ul class="bullet-list text-sm space-y-3">
+                            <li><strong>TAM의 인지적 한계 극복:</strong> 정서적 요인(불안)과 행동적 요인을 포괄하는 통합 모델 제시</li>
+                            <li><strong>한국 실정 반영:</strong> 높은 권력거리 등 문화적 특수성이 반영된 타당화된 척도 제공</li>
+                            <li><strong>후속 연구 기반:</strong> 조직심리학(OB) 분야에서 AI와 직무 태도 간 실증 연구를 수행할 표준화된 도구 확보</li>
                         </ul>
                     </div>
                     
                     <div class="material-card bg-[#fff1f2] border-[#fbcfe8] shadow">
-                        <h3 class="text-lg font-bold text-[#E91E63] mb-3 flex items-center gap-2"><span class="text-2xl">🏢</span> 실무적 시사점</h3>
-                        <p class="text-sm text-gray-700 leading-relaxed mb-4 bg-white p-3 rounded border">
-                            "조직이 효율성을 향상시키고, 동시에 <strong>조직 구성원의 안녕감을 증대시키는 방안을 마련하는데 기여</strong>할 수 있을 것이다."
-                        </p>
-                        <ul class="mt-auto text-sm text-gray-600 list-disc list-inside space-y-2 pl-2">
-                            <li>신규 AI 기술 도입 시 구성원의 사전 수용성 진단 지표</li>
-                            <li>불안 및 저항 요인 파악을 통한 변화 관리 프로그램 설계</li>
+                        <h3 class="text-lg font-bold text-[#E91E63] mb-4 flex items-center gap-2"><span class="text-2xl">🏢</span> 실무적 시사점</h3>
+                        <ul class="bullet-list pink text-sm space-y-3">
+                            <li><strong>AI 도입 사전 진단:</strong> 신규 HR 솔루션 도입 시 구성원의 수용성 사전 진단 지표로 활용</li>
+                            <li><strong>안녕감 증대:</strong> 기술 도입에 따른 스트레스/불안 요인을 선제 파악하여 변화 관리(Change Management) 프로그램 설계</li>
+                            <li><strong>효율성 극대화:</strong> 구성원의 저항을 최소화하고 AI 유용성을 극대화하는 조직 관리 방향성 제시</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="material-card border-l-4 border-yellow-400 bg-yellow-50 justify-center shadow-md">
+                <div class="material-card border-l-4 border-yellow-400 bg-yellow-50 shadow-md">
                     <h3 class="font-bold text-gray-900 text-base mb-3 flex items-center gap-2"><span class="text-xl">💡</span> 발표자 비판적 고찰 및 한계점 논의</h3>
-                    <p class="text-sm text-gray-800 leading-relaxed bg-white p-4 rounded border border-yellow-200">
-                        논문의 저자들은 TAM 모형의 한계를 비판하며 연구를 전개했으나, 정보시스템 관점의 이론보다는 <strong>정서사건이론(AET, Affective Events Theory)이나 직무요구-자원(JD-R) 모형</strong>을 이론적 기틀로 삼았다면 어땠을까 생각합니다. AI 도입을 직무 요구(스트레스 요인)와 자원으로 구분하여 '기술 사용 불안'과 '유용성'의 기제를 설명했다면, 조직행위론 관점에서 더욱 탄탄한 이론적 근거를 제시할 수 있었을 것이라는 아쉬움이 남습니다. 또한 본 연구는 횡단적 데이터를 사용했으므로, 태도의 변화 과정을 추적하는 종단 연구가 향후 요구됩니다.
-                    </p>
+                    <ul class="bullet-list text-sm space-y-2 text-gray-800">
+                        <li><strong>이론적 기틀의 아쉬움:</strong> TAM을 비판하기보다, 처음부터 <strong>정서사건이론(AET)이나 직무요구-자원(JD-R) 모형</strong>을 근간으로 삼았다면 '기술 사용 불안(요구)'과 '유용성(자원)'을 조직행위론 관점에서 더 탄탄하게 설명할 수 있었을 것임.</li>
+                        <li><strong>연구 방법론 한계:</strong> 본 연구는 횡단적 데이터에 의존함. AI 기술 발전 속도를 고려할 때 태도의 변화 과정을 추적하는 <strong>종단 연구(Longitudinal Study)</strong>가 필수적임.</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- [슬라이드 10] 참고문헌 -->
-        <div class="slide" id="slide-10">
-            <h2 class="text-3xl font-bold text-gray-900 mb-6">9. 참고문헌 (References - APA 7)</h2>
+        <!-- [슬라이드 13] 참고문헌 -->
+        <div class="slide" id="slide-13">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">12. 참고문헌 (References - APA 7)</h2>
             <div class="material-card bg-white flex-1 overflow-y-auto">
                 <ul class="space-y-5 text-sm text-gray-700 leading-relaxed" style="padding-left: 3em; text-indent: -3em;">
                     <li>
@@ -472,7 +612,7 @@
 
 <script>
     let currentSlide = 1;
-    const totalSlides = 10;
+    const totalSlides = 13; // 슬라이드 수 업데이트
     const chartRendered = Array(totalSlides + 1).fill(false);
 
     function updateSlide() {
@@ -547,7 +687,7 @@
             }, 100);
         }
 
-        if (slideNum === 6) {
+        if (slideNum === 7) { // 6차원 레이더 차트가 슬라이드 7로 이동됨
             setTimeout(() => {
                 const ctx = document.getElementById('dimensionsRadarChart').getContext('2d');
                 new Chart(ctx, {
@@ -583,14 +723,13 @@
                         }
                     }
                 });
-                chartRendered[6] = true;
+                chartRendered[7] = true;
             }, 100);
         }
     }
 
     // 키보드 방향키 제어
     document.addEventListener('keydown', (e) => {
-        // 스페이스바 등 기타 키로 인해 화면 스크롤이 넘어가는 것을 고려
         if (e.key === 'ArrowRight' || e.key === 'PageDown') {
             e.preventDefault();
             nextSlide();
